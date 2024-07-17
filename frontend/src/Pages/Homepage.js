@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import {
   Container,
   Box,
@@ -11,8 +11,30 @@ import {
 } from "@chakra-ui/react";
 import Login from '../Components/Authentication/Login';
 import Signup from "../Components/Authentication/Signup";
+import { useNavigate } from 'react-router-dom';
+// import {useHistory} from "react-router-dom";
+
 
 const Homepage = () => {
+
+  // const history = useHistory();
+
+  const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem("userInfo"));
+
+  //   if (user) history.push("/chats");
+  // }, [history]);
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (user) navigate("/chats");
+  }, [navigate]);
+
+
+
   return (
     <Container maxW="xl" centerContent>
       <Box
@@ -55,4 +77,4 @@ const Homepage = () => {
   );
 }
 
-export default Homepage
+export default Homepage;
