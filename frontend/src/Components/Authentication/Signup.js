@@ -1,23 +1,23 @@
-// import {
-//   Button,
-//   FormControl,
-//   FormLabel,
-//   Input,
-//   InputGroup,
-//   InputRightElement,
-//   useToast,
-//   VStack,
-// } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 // import React, { useState } from "react";
 
-import { Button } from "@chakra-ui/button";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
-import { VStack } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
+// import { Button } from "@chakra-ui/button";
+// import { FormControl, FormLabel } from "@chakra-ui/form-control";
+// import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
+// import { VStack } from "@chakra-ui/layout";
+// import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const Signup = () => {
@@ -28,7 +28,8 @@ const Signup = () => {
   const [pic, setPic] = useState();
   const [loading, setLoading] = useState(false);
 
-  const history = useHistory();
+  // const history = useHistory();
+  const navigate = useNavigate();
   const toast = useToast();
 
   const [show, setShow] = useState(false);
@@ -132,7 +133,8 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      // history.push("/chats");
+      navigate("/chats");
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -170,7 +172,7 @@ const Signup = () => {
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
-            placeholder="Enter your Name"
+            placeholder="Enter password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">
@@ -186,7 +188,7 @@ const Signup = () => {
         <InputGroup size={"md"}>
           <Input
             type={show ? "text" : "password"}
-            placeholder="Enter your Name"
+            placeholder="Confirm Password"
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">

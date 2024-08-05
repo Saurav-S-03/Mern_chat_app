@@ -1,22 +1,23 @@
-// import {
-//   Button,
-//   FormControl,
-//   FormLabel,
-//   Input,
-//   InputGroup,
-//   InputRightElement,
-//   VStack,
-// } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  InputGroup,
+  InputRightElement,
+  useToast,
+  VStack,
+} from "@chakra-ui/react";
 // import React, { useState } from "react";
 
-import { Button } from "@chakra-ui/button";
-import { FormControl, FormLabel } from "@chakra-ui/form-control";
-import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
-import { VStack } from "@chakra-ui/layout";
+// import { Button } from "@chakra-ui/button";
+// import { FormControl, FormLabel } from "@chakra-ui/form-control";
+// import { Input, InputGroup, InputRightElement } from "@chakra-ui/input";
+// import { VStack } from "@chakra-ui/layout";
 import { useState } from "react";
 import axios from "axios";
-import { useToast } from "@chakra-ui/react";
-import { useHistory } from "react-router-dom";
+// import { useToast } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 //import { ChatState } from "../../Context/ChatProvider";
 
 const Login = () => {
@@ -26,7 +27,10 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
 
   const toast = useToast();
-  const history = useHistory();
+  // const history = useHistory();
+
+  const navigate = useNavigate();
+
   const handleClick = () => setShow(!show);
 
   const submitHandler = async() => {
@@ -66,7 +70,8 @@ const Login = () => {
       // setUser(data);
       localStorage.setItem("userInfo", JSON.stringify(data));
       setLoading(false);
-      history.push("/chats");
+      // history.push("/chats");
+      navigate("/chats");
     } catch (error) {
       toast({
         title: "Error Occured!",
@@ -97,7 +102,7 @@ const Login = () => {
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
-            placeholder="Enter your Name"
+            placeholder="Enter password"
             onChange={(e) => setPassword(e.target.value)}
             value={password}
           />
@@ -124,7 +129,7 @@ const Login = () => {
         colorScheme="red"
         width="100%"
         onClick={() =>{
-            setEmail("guest@mail.com");
+            setEmail("guest@example.com");
             setPassword("12345678");
         }}
       >Guest User Credentials</Button>
